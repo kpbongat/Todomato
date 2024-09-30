@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <Header />
-      <TodoPanel todoList={todoList} />
+      <TodoPanel todoList={todoList} setTodoList={setTodoList} />
     </>
   );
 }
