@@ -6,9 +6,9 @@ function AddTodo({ pushTodoList }) {
       className={styles.button}
       onClick={() =>
         pushTodoList({
-          name: "Write your task here!",
-          dueDate: "Today!",
-          project: "default",
+          name: "",
+          dueDate: "",
+          project: "",
         })
       }
     >

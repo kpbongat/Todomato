@@ -8,6 +8,11 @@ function TodoList({ todoList, setTodoList }) {
     newTodo.push(todo);
     setTodoList(newTodo);
   }
+  function removeTodoList(index) {
+    const newTodo = [...todoList];
+    newTodo.splice(index, 1);
+    setTodoList(newTodo);
+  }
   function updateTodoList(index, key, value) {
     const newTodo = [...todoList];
     newTodo[index][key] = value;
@@ -15,7 +20,12 @@ function TodoList({ todoList, setTodoList }) {
   }
 
   const todoComponents = todoList.map((i, index) => (
-    <Todo todo={i} updateTodoList={updateTodoList} todoIndex={index} />
+    <Todo
+      todo={i}
+      updateTodoList={updateTodoList}
+      removeTodoList={removeTodoList}
+      todoIndex={index}
+    />
   ));
   todoComponents.push(<AddTodo pushTodoList={pushTodoList} />);
 
