@@ -2,7 +2,7 @@ import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
 import AddTodo from "../AddTodo/AddTodo";
 
-function TodoList({ todoList, setTodoList }) {
+function TodoList({ todoList, setTodoList, selectedTodo, setSelectedTodo }) {
   function pushTodoList(todo) {
     const newTodo = [...todoList];
     newTodo.push(todo);
@@ -24,6 +24,8 @@ function TodoList({ todoList, setTodoList }) {
       todo={i}
       updateTodoList={updateTodoList}
       removeTodoList={removeTodoList}
+      selectedTodo={selectedTodo}
+      setSelectedTodo={setSelectedTodo}
       todoIndex={index}
     />
   ));

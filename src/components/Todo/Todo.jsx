@@ -2,9 +2,21 @@ import RemoveTodo from "../RemoveTodo/RemoveTodo";
 import TodoField from "../TodoField/TodoField";
 import styles from "./Todo.module.css";
 
-function Todo({ todo, updateTodoList, removeTodoList, todoIndex }) {
+function Todo({
+  todo,
+  updateTodoList,
+  removeTodoList,
+  selectedTodo,
+  setSelectedTodo,
+  todoIndex,
+}) {
   return (
-    <div className={styles.div}>
+    <div
+      className={`${styles.div} ${
+        selectedTodo === todoIndex ? styles.todo : null
+      }`}
+      onClick={() => setSelectedTodo(todoIndex)}
+    >
       <TodoField
         type="text"
         value={todo.name}
