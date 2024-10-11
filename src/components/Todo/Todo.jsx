@@ -1,5 +1,7 @@
+import { useState } from "react";
 import RemoveTodo from "../RemoveTodo/RemoveTodo";
 import TodoField from "../TodoField/TodoField";
+import UpdateTodo from "../UpdateTodo/UpdateTodo";
 import styles from "./Todo.module.css";
 
 function Todo({
@@ -10,6 +12,14 @@ function Todo({
   setSelectedTodo,
   todoIndex,
 }) {
+  const [todoState, setTodoState] = useState({
+    name: todo.name,
+    dueDate: todo.dueDate,
+    project: todo.project,
+  });
+  function updateTodoState(key, value) {
+    setTodoState({ ...todoState, [key]: value });
+  }
   return (
     <div
       className={`${styles.div} ${
@@ -21,19 +31,20 @@ function Todo({
     >
       <TodoField
         type="text"
-        value={todo.name}
-        updateTodoList={(value) => updateTodoList(todoIndex, "name", value)}
+        value={todoState.name}
+        updateTodoState={(value) => updateTodoState("name", value)}
       />
       <TodoField
         type="text"
-        value={todo.dueDate}
-        updateTodoList={(value) => updateTodoList(todoIndex, "dueDate", value)}
+        value={todoState.dueDate}
+        updateTodoState={(value) => updateTodoState("dueDate", value)}
       />
       <TodoField
         type="text"
-        value={todo.project}
-        updateTodoList={(value) => updateTodoList(todoIndex, "project", value)}
+        value={todoState.project}
+        updateTodoState={(value) => updateTodoState("project", value)}
       />
+      <UpdateTodo updateTodoList={() => updateTodoList(todoIndex, todoState)} />
       <RemoveTodo removeTodoList={() => removeTodoList(todoIndex)} />
     </div>
   );

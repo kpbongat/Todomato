@@ -13,9 +13,9 @@ function TodoList({ todoList, setTodoList, selectedTodo, setSelectedTodo }) {
     newTodo.splice(index, 1);
     setTodoList(newTodo);
   }
-  function updateTodoList(index, key, value) {
+  function updateTodoList(index, state) {
     const newTodo = [...todoList];
-    newTodo[index][key] = value;
+    newTodo[index] = state;
     setTodoList(newTodo);
   }
 
