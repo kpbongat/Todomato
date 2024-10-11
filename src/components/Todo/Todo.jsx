@@ -15,7 +15,9 @@ function Todo({
       className={`${styles.div} ${
         selectedTodo === todoIndex ? styles.todo : null
       }`}
-      onClick={() => setSelectedTodo(todoIndex)}
+      onFocus={() => setSelectedTodo(todoIndex)}
+      onBlur={() => setSelectedTodo(null)}
+      tabIndex="0"
     >
       <TodoField
         type="text"
