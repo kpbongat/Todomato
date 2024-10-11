@@ -11,7 +11,11 @@ function TodoField({ value, type, updateTodoList }) {
       autoFocus={!!value}
       type={type}
       value={value}
-      onBlur={() => setState(0)}
+      onBlur={() => {
+        if (value) {
+          setState(0);
+        }
+      }}
       onChange={(e) => {
         updateTodoList(e.target.value);
       }}
