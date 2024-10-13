@@ -1,6 +1,6 @@
 import styles from "./AddTodo.module.css";
 
-function AddTodo({ pushTodoList }) {
+function AddTodo({ pushTodoList, selectedProject }) {
   return (
     <button
       className={styles.button}
@@ -8,7 +8,7 @@ function AddTodo({ pushTodoList }) {
         pushTodoList({
           name: "",
           dueDate: "",
-          project: "",
+          project: selectedProject ? selectedProject : "Default Project",
         })
       }
     >

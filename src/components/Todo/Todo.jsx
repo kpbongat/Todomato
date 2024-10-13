@@ -51,15 +51,16 @@ function Todo({
         updateTodoState={(value) => updateTodoState("project", value)}
         setEdited={setEdited}
       />
-      {committed ? <EditTodo setEditFlag={setEditFlag} /> : null}
-
-      {edited ? (
-        <UpdateTodo
-          updateTodoList={() => updateTodoList(todoIndex, todoState)}
-          setCommitted={setCommitted}
-        />
-      ) : null}
-      <RemoveTodo removeTodoList={() => removeTodoList(todoIndex)} />
+      <div>
+        {committed ? <EditTodo setEditFlag={setEditFlag} /> : null}
+        {edited ? (
+          <UpdateTodo
+            updateTodoList={() => updateTodoList(todoIndex, todoState)}
+            setCommitted={setCommitted}
+          />
+        ) : null}
+        <RemoveTodo removeTodoList={() => removeTodoList(todoIndex)} />
+      </div>
     </div>
   );
 }

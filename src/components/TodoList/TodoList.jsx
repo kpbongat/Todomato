@@ -7,6 +7,7 @@ function TodoList({
   setTodoList,
   selectedTodo,
   setSelectedTodo,
+  selectedProject,
   setEditFlag,
 }) {
   function pushTodoList(todo) {
@@ -25,18 +26,26 @@ function TodoList({
     setTodoList(newTodo);
   }
 
-  const todoComponents = todoList.map((i, index) => (
-    <Todo
-      todo={i}
-      updateTodoList={updateTodoList}
-      removeTodoList={removeTodoList}
-      selectedTodo={selectedTodo}
-      setSelectedTodo={setSelectedTodo}
-      setEditFlag={setEditFlag}
-      todoIndex={index}
-    />
-  ));
-  todoComponents.push(<AddTodo pushTodoList={pushTodoList} />);
+  const todoComponents = todoList.map((i, index) => {
+    if (selectedProject && selectedProject != i.project) {
+      return null;
+    }
+    return (
+      <Todo
+        todo={i}
+        updateTodoList={updateTodoList}
+        removeTodoList={removeTodoList}
+        selectedTodo={selectedTodo}
+        setSelectedTodo={setSelectedTodo}
+        setEditFlag={setEditFlag}
+        todoIndex={index}
+      />
+    );
+  });
+
+  todoComponents.push(
+    <AddTodo pushTodoList={pushTodoList} selectedProject={selectedProject} />
+  );
 
   return <section className={styles.section}>{todoComponents}</section>;
 }
