@@ -35,6 +35,7 @@ function Todo({
     >
       <TodoField
         type="text"
+        placeholder="Enter your task name here"
         value={todoState.name}
         updateTodoState={(value) => updateTodoState("name", value)}
         setEdited={setEdited}

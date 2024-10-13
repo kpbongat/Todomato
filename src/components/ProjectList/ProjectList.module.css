@@ -3,4 +3,8 @@
   flex-direction: column;
   padding: 1%;
   min-width: 250px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+  margin-right: 10px;
 }

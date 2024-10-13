@@ -1,4 +1,12 @@
 * {
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  background-color: rgb(211 211 211 / 0.3);
 }
