@@ -3,6 +3,7 @@ import RemoveTodo from "../RemoveTodo/RemoveTodo";
 import TodoField from "../TodoField/TodoField";
 import UpdateTodo from "../UpdateTodo/UpdateTodo";
 import styles from "./Todo.module.css";
+import EditTodo from "../EditTodo/EditTodo";
 
 function Todo({
   todo,
@@ -10,6 +11,7 @@ function Todo({
   removeTodoList,
   selectedTodo,
   setSelectedTodo,
+  setEditFlag,
   todoIndex,
 }) {
   const [todoState, setTodoState] = useState({
@@ -17,6 +19,9 @@ function Todo({
     dueDate: todo.dueDate,
     project: todo.project,
   });
+  const [committed, setCommitted] = useState(false);
+  const [edited, setEdited] = useState(false);
+
   function updateTodoState(key, value) {
     setTodoState({ ...todoState, [key]: value });
   }
@@ -26,25 +31,34 @@ function Todo({
         selectedTodo === todoIndex ? styles.todo : null
       }`}
       onFocus={() => setSelectedTodo(todoIndex)}
-      onBlur={() => setSelectedTodo(null)}
       tabIndex="0"
     >
       <TodoField
         type="text"
         value={todoState.name}
         updateTodoState={(value) => updateTodoState("name", value)}
+        setEdited={setEdited}
       />
       <TodoField
         type="text"
         value={todoState.dueDate}
         updateTodoState={(value) => updateTodoState("dueDate", value)}
+        setEdited={setEdited}
       />
       <TodoField
         type="text"
         value={todoState.project}
         updateTodoState={(value) => updateTodoState("project", value)}
+        setEdited={setEdited}
       />
-      <UpdateTodo updateTodoList={() => updateTodoList(todoIndex, todoState)} />
+      {committed ? <EditTodo setEditFlag={setEditFlag} /> : null}
+
+      {edited ? (
+        <UpdateTodo
+          updateTodoList={() => updateTodoList(todoIndex, todoState)}
+          setCommitted={setCommitted}
+        />
+      ) : null}
       <RemoveTodo removeTodoList={() => removeTodoList(todoIndex)} />
     </div>
   );

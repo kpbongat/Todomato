@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./TodoField.module.css";
-function TodoField({ value, type, updateTodoState }) {
+function TodoField({ value, type, updateTodoState, setEdited }) {
   const [state, setState] = useState(value ? 0 : 1);
   return state === 0 ? (
     <button className={styles.button} type="button" onClick={() => setState(1)}>
@@ -18,6 +18,7 @@ function TodoField({ value, type, updateTodoState }) {
       }}
       onChange={(e) => {
         updateTodoState(e.target.value);
+        setEdited(true);
       }}
     />
   );

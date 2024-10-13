@@ -5,6 +5,7 @@ import styles from "./TodoPanel.module.css";
 import TodoDetail from "../TodoDetail/TodoDetail";
 function TodoPanel(props) {
   const [selectedTodo, setSelectedTodo] = useState(null);
+  const [editFlag, setEditFlag] = useState(false);
   return (
     <main className={styles.main}>
       <ProjectList {...props} />
@@ -12,10 +13,9 @@ function TodoPanel(props) {
         {...props}
         selectedTodo={selectedTodo}
         setSelectedTodo={setSelectedTodo}
+        setEditFlag={setEditFlag}
       />
-      {selectedTodo || selectedTodo === 0 ? (
-        <TodoDetail {...props} selectedTodo={selectedTodo} />
-      ) : null}
+      {editFlag ? <TodoDetail {...props} selectedTodo={selectedTodo} /> : null}
     </main>
   );
 }
