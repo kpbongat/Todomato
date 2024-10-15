@@ -4,6 +4,7 @@ import TodoField from "../TodoField/TodoField";
 import UpdateTodo from "../UpdateTodo/UpdateTodo";
 import styles from "./Todo.module.css";
 import EditTodo from "../EditTodo/EditTodo";
+import TimeLeft from "../TimeLeft/TimeLeft";
 
 function Todo({
   todo,
@@ -41,11 +42,15 @@ function Todo({
         setEdited={setEdited}
       />
       <TodoField
-        type="text"
+        type="date"
+        min={new Date()}
         value={todoState.dueDate}
         updateTodoState={(value) => updateTodoState("dueDate", value)}
         setEdited={setEdited}
       />
+      {todoState.dueDate && committed ? (
+        <TimeLeft dueDate={todoState.dueDate} />
+      ) : null}
       <TodoField
         type="text"
         value={todoState.project}
