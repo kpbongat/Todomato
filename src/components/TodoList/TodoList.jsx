@@ -1,6 +1,7 @@
 import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
 import AddTodo from "../AddTodo/AddTodo";
+import TodoHeaders from "../TodoHeaders/TodoHeaders";
 
 function TodoList({
   todoList,
@@ -42,7 +43,7 @@ function TodoList({
       />
     );
   });
-
+  todoComponents.unshift(<TodoHeaders />);
   todoComponents.push(
     <AddTodo pushTodoList={pushTodoList} selectedProject={selectedProject} />
   );

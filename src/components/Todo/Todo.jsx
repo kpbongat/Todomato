@@ -41,23 +41,25 @@ function Todo({
         updateTodoState={(value) => updateTodoState("name", value)}
         setEdited={setEdited}
       />
-      <TodoField
-        type="date"
-        min={new Date()}
-        value={todoState.dueDate}
-        updateTodoState={(value) => updateTodoState("dueDate", value)}
-        setEdited={setEdited}
-      />
-      {todoState.dueDate && committed ? (
-        <TimeLeft dueDate={todoState.dueDate} />
-      ) : null}
+      <div className={styles.flex}>
+        <TodoField
+          type="date"
+          min={new Date()}
+          value={todoState.dueDate}
+          updateTodoState={(value) => updateTodoState("dueDate", value)}
+          setEdited={setEdited}
+        />
+        {todoState.dueDate && committed ? (
+          <TimeLeft dueDate={todoState.dueDate} />
+        ) : null}
+      </div>
       <TodoField
         type="text"
         value={todoState.project}
         updateTodoState={(value) => updateTodoState("project", value)}
         setEdited={setEdited}
       />
-      <div>
+      <div className={styles.flex}>
         {committed ? <EditTodo setEditFlag={setEditFlag} /> : null}
         {edited ? (
           <UpdateTodo
