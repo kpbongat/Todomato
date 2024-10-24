@@ -2,6 +2,7 @@ import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
 import AddTodo from "../AddTodo/AddTodo";
 import TodoHeaders from "../TodoHeaders/TodoHeaders";
+import { useState } from "react";
 
 function TodoList({
   todoList,
@@ -16,34 +17,59 @@ function TodoList({
     newTodo.push(todo);
     setTodoList(newTodo);
   }
-  function removeTodoList(index) {
+  function removeTodoList(key) {
     const newTodo = [...todoList];
-    newTodo.splice(index, 1);
+    newTodo.splice(
+      newTodo.findIndex((i) => i.key === key),
+      1
+    );
     setTodoList(newTodo);
   }
-  function updateTodoList(index, state) {
+  function updateTodoList(key, state) {
     const newTodo = [...todoList];
-    newTodo[index] = state;
+    newTodo[newTodo.findIndex((i) => i.key === key)] = state;
     setTodoList(newTodo);
   }
 
-  const todoComponents = todoList.map((i, index) => {
+  function sortByName(a, b) {
+    if (a.name == b.name) {
+      return 0;
+    }
+    if (a.name === "") return 1;
+    if (b.name === "") return 1;
+    if (sortOrder === "asc") {
+      return a.name > b.name ? 1 : -1;
+    } else {
+      return a.name > b.name ? -1 : 1;
+    }
+  }
+
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortRule, setSortRule] = useState(() => sortByName);
+  console.log(sortOrder);
+  const todoComponents = todoList.toSorted(sortRule).map((i) => {
     if (selectedProject && selectedProject != i.project) {
       return null;
     }
     return (
       <Todo
+        key={i.key}
         todo={i}
         updateTodoList={updateTodoList}
         removeTodoList={removeTodoList}
         selectedTodo={selectedTodo}
         setSelectedTodo={setSelectedTodo}
         setEditFlag={setEditFlag}
-        todoIndex={index}
       />
     );
   });
-  todoComponents.unshift(<TodoHeaders />);
+  todoComponents.unshift(
+    <TodoHeaders
+      setSortRule={setSortRule}
+      sortOrder={sortOrder}
+      setSortOrder={setSortOrder}
+    />
+  );
   todoComponents.push(
     <AddTodo pushTodoList={pushTodoList} selectedProject={selectedProject} />
   );

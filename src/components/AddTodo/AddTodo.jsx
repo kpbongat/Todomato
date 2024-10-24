@@ -6,6 +6,7 @@ function AddTodo({ pushTodoList, selectedProject }) {
       className={styles.button}
       onClick={() =>
         pushTodoList({
+          key: crypto.randomUUID(),
           name: "",
           dueDate: "",
           project: selectedProject ? selectedProject : "Default Project",

@@ -13,9 +13,9 @@ function Todo({
   selectedTodo,
   setSelectedTodo,
   setEditFlag,
-  todoIndex,
 }) {
   const [todoState, setTodoState] = useState({
+    key: todo.key,
     name: todo.name,
     dueDate: todo.dueDate,
     project: todo.project,
@@ -29,9 +29,9 @@ function Todo({
   return (
     <div
       className={`${styles.div} ${
-        selectedTodo === todoIndex ? styles.todo : null
+        selectedTodo === todoState.key ? styles.todo : null
       }`}
-      onFocus={() => setSelectedTodo(todoIndex)}
+      onFocus={() => setSelectedTodo(todoState.key)}
       tabIndex="0"
     >
       <TodoField
@@ -63,11 +63,11 @@ function Todo({
         {committed ? <EditTodo setEditFlag={setEditFlag} /> : null}
         {edited ? (
           <UpdateTodo
-            updateTodoList={() => updateTodoList(todoIndex, todoState)}
+            updateTodoList={() => updateTodoList(todoState.key, todoState)}
             setCommitted={setCommitted}
           />
         ) : null}
-        <RemoveTodo removeTodoList={() => removeTodoList(todoIndex)} />
+        <RemoveTodo removeTodoList={() => removeTodoList(todoState.key)} />
       </div>
     </div>
   );
