@@ -37,16 +37,11 @@ function TodoList({
     }
     if (a.name === "") return 1;
     if (b.name === "") return 1;
-    if (sortOrder === "asc") {
-      return a.name > b.name ? 1 : -1;
-    } else {
-      return a.name > b.name ? -1 : 1;
-    }
+    return a.name > b.name ? 1 : -1;
   }
 
-  const [sortOrder, setSortOrder] = useState("asc");
   const [sortRule, setSortRule] = useState(() => sortByName);
-  console.log(sortOrder);
+  console.log(todoList.toSorted(sortRule));
   const todoComponents = todoList.toSorted(sortRule).map((i) => {
     if (selectedProject && selectedProject != i.project) {
       return null;
@@ -63,13 +58,7 @@ function TodoList({
       />
     );
   });
-  todoComponents.unshift(
-    <TodoHeaders
-      setSortRule={setSortRule}
-      sortOrder={sortOrder}
-      setSortOrder={setSortOrder}
-    />
-  );
+  todoComponents.unshift(<TodoHeaders setSortRule={setSortRule} />);
   todoComponents.push(
     <AddTodo pushTodoList={pushTodoList} selectedProject={selectedProject} />
   );
