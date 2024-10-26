@@ -3,7 +3,6 @@ import RemoveTodo from "../RemoveTodo/RemoveTodo";
 import TodoField from "../TodoField/TodoField";
 import UpdateTodo from "../UpdateTodo/UpdateTodo";
 import styles from "./Todo.module.css";
-import EditTodo from "../EditTodo/EditTodo";
 import TimeLeft from "../TimeLeft/TimeLeft";
 
 function Todo({
@@ -12,7 +11,6 @@ function Todo({
   removeTodoList,
   selectedTodo,
   setSelectedTodo,
-  setEditFlag,
 }) {
   const [todoState, setTodoState] = useState({
     key: todo.key,
@@ -60,11 +58,11 @@ function Todo({
         setEdited={setEdited}
       />
       <div className={styles.flex}>
-        {committed ? <EditTodo setEditFlag={setEditFlag} /> : null}
         {edited ? (
           <UpdateTodo
             updateTodoList={() => updateTodoList(todoState.key, todoState)}
             setCommitted={setCommitted}
+            setEdited={setEdited}
           />
         ) : null}
         <RemoveTodo removeTodoList={() => removeTodoList(todoState.key)} />

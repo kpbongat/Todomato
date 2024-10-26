@@ -10,7 +10,6 @@ function TodoList({
   selectedTodo,
   setSelectedTodo,
   selectedProject,
-  setEditFlag,
 }) {
   function pushTodoList(todo) {
     const newTodo = [...todoList];
@@ -41,7 +40,6 @@ function TodoList({
   }
 
   const [sortRule, setSortRule] = useState(() => sortByName);
-  console.log(todoList.toSorted(sortRule));
   const todoComponents = todoList.toSorted(sortRule).map((i) => {
     if (selectedProject && selectedProject != i.project) {
       return null;
@@ -54,7 +52,6 @@ function TodoList({
         removeTodoList={removeTodoList}
         selectedTodo={selectedTodo}
         setSelectedTodo={setSelectedTodo}
-        setEditFlag={setEditFlag}
       />
     );
   });
