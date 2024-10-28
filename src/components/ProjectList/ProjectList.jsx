@@ -16,8 +16,9 @@ function ProjectList({
   );
   return (
     <section className={styles.section}>
-      {projects.map((i) => (
+      {projects.map((i, index) => (
         <Project
+          key={index}
           projectName={i}
           selectedProject={selectedProject}
           setSelectedProject={setSelectedProject}

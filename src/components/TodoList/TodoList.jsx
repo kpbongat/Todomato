@@ -62,9 +62,15 @@ function TodoList({
       />
     );
   });
-  todoComponents.unshift(<TodoHeaders setSortRule={setSortRule} />);
+  todoComponents.unshift(
+    <TodoHeaders key={"todoHeadersKey"} setSortRule={setSortRule} />
+  );
   todoComponents.push(
-    <AddTodo pushTodoList={pushTodoList} selectedProject={selectedProject} />
+    <AddTodo
+      key={"addTodoKey"}
+      pushTodoList={pushTodoList}
+      selectedProject={selectedProject}
+    />
   );
 
   return <section className={styles.section}>{todoComponents}</section>;
