@@ -10,7 +10,7 @@ function UpdateTodo({ updateTodoList, setCommitted, setEdited }) {
         setEdited(false);
       }}
     >
-      ✓
+      Save
     </button>
   );
 }

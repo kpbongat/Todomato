@@ -1,10 +1,10 @@
 .button {
   border: none;
   border-radius: 10px;
-  width: 2rem;
   padding: 10px;
   color: white;
   background-color: gray;
+  font-size: 1rem;
 }
 
 .button:hover {
