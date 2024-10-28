@@ -1,9 +1,10 @@
 .div {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 250px;
+  grid-template-columns: 125px repeat(3, 1fr) 250px;
   justify-items: center;
   border-radius: 10px;
   padding: 10px;
+  position: relative;
 }
 
 .div:hover {
@@ -17,4 +18,17 @@
 }
 .todo {
   background-color: rgb(211 211 211 / 0.5);
+}
+
+div.done {
+  opacity: 25%;
+}
+div.done:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-bottom: 1px solid black;
+  width: 95%;
 }

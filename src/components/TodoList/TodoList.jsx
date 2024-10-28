@@ -16,6 +16,12 @@ function TodoList({
     newTodo.push(todo);
     setTodoList(newTodo);
   }
+  function tickTodoList(key) {
+    const newTodo = [...todoList];
+    const done = newTodo[newTodo.findIndex((i) => i.key === key)].done;
+    newTodo[newTodo.findIndex((i) => i.key === key)].done = done ? false : true;
+    setTodoList(newTodo);
+  }
   function removeTodoList(key) {
     const newTodo = [...todoList];
     newTodo.splice(
@@ -35,7 +41,7 @@ function TodoList({
       return 0;
     }
     if (a.name === "") return 1;
-    if (b.name === "") return 1;
+    if (b.name === "") return -1;
     return a.name > b.name ? 1 : -1;
   }
 
@@ -48,6 +54,7 @@ function TodoList({
       <Todo
         key={i.key}
         todo={i}
+        tickTodoList={tickTodoList}
         updateTodoList={updateTodoList}
         removeTodoList={removeTodoList}
         selectedTodo={selectedTodo}

@@ -1,6 +1,6 @@
 .div {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 250px;
+  grid-template-columns: 125px repeat(3, 1fr) 250px;
   justify-items: center;
   border-radius: 10px;
   padding: 10px;

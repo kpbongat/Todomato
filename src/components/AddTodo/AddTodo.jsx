@@ -10,6 +10,7 @@ function AddTodo({ pushTodoList, selectedProject }) {
           name: "",
           dueDate: "",
           project: selectedProject ? selectedProject : "Default Project",
+          done: false,
         })
       }
     >

@@ -70,6 +70,7 @@ function TodoHeaders({ setSortRule }) {
   const [currentCategory, setCurrentCategory] = useState("task");
   return (
     <div className={styles.div}>
+      <span></span>
       <TodoHeader
         text={"Task"}
         isActive={currentCategory === "task"}
